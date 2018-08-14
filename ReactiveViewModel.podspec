@@ -25,3 +25,22 @@
   "requires_arc": true,
   "prepare_command": "find . \\( -regex '.*EXT.*\\.[mh]$' -o -regex '.*metamacros\\.[mh]$' \\) -execdir mv {} RAC{} \\;\nfind . -regex '.*\\.[hm]' -exec sed -i '' -E 's@\"(EXT.*|metamacros)\\.h\"@\"RAC\\1.h\"@' {} \\;\nfind . -regex '.*\\.[hm]' -exec sed -i '' -E 's@<ReactiveCocoa/(EXT.*)\\.h>@<ReactiveCocoa/RAC\\1.h>@' {} \\;\n"
 }
+
+
+Pod::Spec.new do |s|
+  s.name     = 'ReactiveViewModel'
+  s.version  = '0.3'
+  s.license  = 'MIT'
+  s.summary  = 'Model-View-ViewModel, using ReactiveCocoa.'
+  s.homepage = 'https://github.com/BradLarson/GPUImage'
+  s.author   = { 'Alan Rogers' => 'alan@github.com' }
+  s.source   = { :git => 'https://github.com/fireSkyStar/ReactiveViewModel.git', :tag => "#{s.version}" }
+
+  s.source_files = 'ReactiveViewModel/*.{h,m}'
+  s.requires_arc = true
+  s.xcconfig = { 'CLANG_MODULES_AUTOLINK' => 'YES' }
+
+  s.ios.deployment_target = '6.0'
+  s.osx.deployment_target = '10.8'
+  s.osx.xcconfig = { 'GCC_WARN_ABOUT_RETURN_TYPE' => 'YES' }
+end
